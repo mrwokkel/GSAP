@@ -880,7 +880,7 @@ export class ScrollTrigger {
 				_clamp = gsap.utils.clamp;
 				gsap.core.globals("ScrollTrigger", ScrollTrigger); // must register the global manually because in Internet Explorer, functions (classes) don't have a "name" property.
 				if (_body) {
-					_raf = _win.requestAnimationFrame || (f => setTimeout(f, 16));
+					_raf = f => (_win.requestAnimationFrame ? _win.requestAnimationFrame(f) : setTimeout(f, 16));
 					_addListener(_win, "mousewheel", _onScroll);
 					_root = [_win, _doc, _docEl, _body];
 					_addListener(_doc, "scroll", _onScroll); // some browsers (like Chrome), the window stops dispatching scroll events on the window if you scroll really fast, but it's consistent on the document!
